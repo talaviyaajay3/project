@@ -6,6 +6,9 @@ import { database } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Activity } from "lucide-react";
+import { ModeToggle } from "@/components/ThemeButton";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export default function Home() {
   const [isOn, setIsOn] = useState(false);
@@ -22,7 +25,7 @@ export default function Home() {
     });
 
     // Cleanup subscription
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   const incrementCounter = async () => {
@@ -50,10 +53,10 @@ export default function Home() {
             <div className="text-6xl font-bold text-primary mb-8">
               {isOn ? "ON" : "OFF"}
             </div>
-
-            <Button size="lg" className="w-full" onClick={incrementCounter}>
-              Increment Counter
-            </Button>
+            <div className="flex items-center justify-center gap-2">
+              <Switch id="airplane-mode" onClick={incrementCounter} />
+              <ModeToggle />
+            </div>
           </div>
         </Card>
       </div>
